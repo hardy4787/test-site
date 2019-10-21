@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Career-guidance test</title>
+	<link rel="stylesheet" href="./css/main.css">
+	<link rel="icon" href="./img/favicon.png" type="image/png">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+	<nav class="navbar navbar-light fixed-top bg-light py-0 shadow">
+		<a class="navbar-brand" href="#">testometr</a>
+		<div class="d-flex justify-content-end">
+			<form class="form-inline">
+				<button class="btn btn-outline-success btn-sm" type="submit">Log in</button>
+			</form>
+		</div>
+	</nav>
+	<div class="container main-container">
+		<div class="card border-0 shadow mb-3">
+			<div class="card-body p-4">
+				<h1 class="font-weight-light">Hello, dear friend!</h1>
+				<span class="lead">You can choose the right test and check the result</span>
+			</div>
+		</div>
+		<div class="main-image text-center mb-5 mt-5">
+			<img class="image-rounded" src="img/social.jpg" alt="social">
+		</div>
+		<div class="filter-group">
+			<div class="filter-item">
+				<form action="">
+					<div class="form-group">
+						<select class="form-control" id="test-categories">
+							<option selected>all</option>
+						</select>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row justify-content-between">
+			<div class="card border-0 shadow mb-3 test-item">
+				<div class="card-body p-3">
+					<span class="lead">Personality test</span>
+				</div>
+			</div>
+			<div class="card border-0 shadow mb-3 test-item">
+				<div class="card-body p-3">
+					<span class="lead">Personality test</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-test-item">
+		<div class="modal-test-item-content">
+			<div class="modal-test-item-header">
+				<span class="modal-test-item-close" onclick="closeTestItemModal()">&times;</span>
+			</div>
+			<div class="modal-test-item-body">
+				<span>Take our free personality test and discover what really drives you. See your Personality Type instantly
+					after the test! Completely free.
+
+					Guidelines:
+
+					Choose the answer that best describes you. Your gut reaction is often the correct choice.
+					Don’t pick an answer because it’s what you think society would want. Be true to yourself.
+					Be as honest as possible, even if you don’t like the answer.</span>
+			</div>
+			<div class="modal-footer-test-item text-center my-2">
+				<form>
+					<button class="btn btn-outline-success btn-lg" type="button" onclick="startTest()">Start!</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="test-question-block">
+		<div class="test-question-block-content">
+			<div id="question-header"></div>
+			<div id="question-body">
+				<ul></ul>
+			</div>
+			<div id="question-footer">
+				<form>
+					<button class="btn btn-outline-success btn-lg" id="next-question" type="button"
+						onclick="nextQuestion()">Next</button>
+					<button class="btn btn-outline-success btn-lg" id="finish-test" type="button"
+						onclick="finishTest()">Finish</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+
+<script src="js/scripts.min.js"></script>
+
+</html>

@@ -1,0 +1,89 @@
+body
+	background: url(https://cs8.pikabu.ru/post_img/big/2016/06/21/4/146648766919973699.jpg) no-repeat center center fixed
+	background-size: cover
+
+.main-container
+	margin-top: 70px
+
+.filter-item
+	max-width: 250px
+
+.image-rounded
+	border-radius: 50%
+	width: 250px
+	height: 200px
+
+.test-item
+	cursor: pointer
+
+	.card-body
+		transition-duration: 0.2s
+	&:hover
+		.card-body
+			box-shadow: 0 0 10px rgba(0,0,0,0.5)
+
+.test-question-block
+
+	.test-question-block-content
+		font-size: 20px
+		max-width: 50%
+		border-radius: 20px
+
+		#question-body
+			padding: 20px
+		
+		#question-footer
+			text-align: right
+
+			form
+				display: inline-block
+
+.test-question-block,
+.modal-test-item
+	display: none
+	position: fixed
+	z-index: 1
+	padding-top: 100px
+	left: 0
+	top: 0
+	width: 100%
+	height: 100%
+	overflow: auto
+	background-color: rgb(0,0,0)
+	background-color: rgba(0,0,0,0.4)
+
+.modal-test-item-content
+	width: 80%
+
+.modal-test-item-content,
+.test-question-block-content
+	background-color: #fefefe
+	margin: auto
+	padding: 10px 20px
+	border: 1px solid #888
+
+.modal-test-item
+	&-header
+		text-align: right
+
+		.modal-test-item-close
+			color: #aaaaaa
+			font-size: 28px
+			font-weight: bold
+
+		.modal-test-item-:hover,
+		.modal-test-item-:focus
+			color: #000
+			text-decoration: none
+			cursor: pointer
+
+	&-body
+		padding: 5px 30px
+		font-size: 20px
+
+	&-footer
+		form
+			display: inline-block
+
+#finish-test
+	display: none
