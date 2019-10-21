@@ -16,12 +16,11 @@ body {
   height: 200px; }
 
 .test-item {
-  cursor: pointer; }
-  .test-item .card-body {
-    -webkit-transition-duration: 0.2s;
-         -o-transition-duration: 0.2s;
-            transition-duration: 0.2s; }
-  .test-item:hover .card-body {
+  cursor: pointer;
+  -webkit-transition-duration: 0.2s;
+       -o-transition-duration: 0.2s;
+          transition-duration: 0.2s; }
+  .test-item:hover {
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
 
