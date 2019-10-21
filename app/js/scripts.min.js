@@ -6,7 +6,9 @@ let testBody = document.getElementById("question-body");
 let testCategories = document.getElementById("test-categories");
 let nextQuestionButton = document.getElementById("next-question");
 let finishTestButton = document.getElementById("finish-test");
-let testsContainer = document.getElementById("test-list");
+let testsContainer = document.getElementById("test-list-container");
+let currentTest;
+
 let questionCounter = 0;
 
 let categories = [
@@ -18,26 +20,55 @@ let categories = [
 	"food"
 ]
 
-let questions = [
+let tests = [
 	{
-		question: "You’re waiting in a long line:",
-		options: ["You chat with the person next to you.", "You keep your eyes on your phone."],
-		correctAnswer: ["1"]
+		id: 1,
+		name: "Personality test",
+		questions: [{
+			question: "You’re waiting in a long line:",
+			options: ["You chat with the person next to you.", "You keep your eyes on your phone."],
+			correctAnswer: ["1"]
+		},
+		{
+			question: "Roommates:",
+			options: ["It is great to have someone there when you get home.", "You’d much rather live by yourself."],
+			correctAnswer: ["2"]
+		},
+		{
+			question: "You’re going on a day trip to the mountains.",
+			options: ["You plan out where to go and what to do.", "You just get in the car and go!"],
+			correctAnswer: ["1"]
+		}]
 	},
 	{
-		question: "Roommates:",
-		options: ["It is great to have someone there when you get home.", "You’d much rather live by yourself."],
-		correctAnswer: ["2"]
-	},
-	{
-		question: "You’re going on a day trip to the mountains.",
-		options: ["You plan out where to go and what to do.", "You just get in the car and go!"],
-		correctAnswer: ["1"]
+		id: 2,
+		name: "SHA",
+		questions: [{
+			question: "Are you man?",
+			options: ["Yes", "No"],
+			correctAnswer: ["1"]
+		},
+		{
+			question: "Roommates:",
+			options: ["It is great to have someone there when you get home.", "You’d much rather live by yourself."],
+			correctAnswer: ["2"]
+		},
+		{
+			question: "You’re going on a day trip to the mountains.",
+			options: ["You plan out where to go and what to do.", "You just get in the car and go!"],
+			correctAnswer: ["1"]
+		}]
 	}
-];
+]
 
-function expandTestItemModal() {
+function expandTestItemModal(element) {
 	modalTestItem.style.display = "block";
+
+	setCurrentTest(element.target.getAttribute("data-test-id"));
+}
+
+function setCurrentTest(testId) {
+	currentTest = tests.find(x => x.id == testId);
 }
 
 function closeTestItemModal() {
@@ -69,7 +100,7 @@ function nextQuestion() {
 		return;
 	}
 	clearQuestionBlock();
-	if (questionCounter === questions.length - 1) {
+	if (questionCounter === currentTest.questions.length - 1) {
 		nextQuestionButton.style.display = "none";
 		finishTestButton.style.display = "block";
 	}
@@ -78,10 +109,10 @@ function nextQuestion() {
 		nextQuestionButton.style.display = "block";
 	}
 
-	if (questionCounter == 0 || questionCounter < questions.length) {
-		testHeader.innerHTML = questions[questionCounter].question;
-		for (let i = 0; i < questions[questionCounter].options.length; i++)
-			addListOptionIntoQuestion(questions[questionCounter].options[i]);
+	if (questionCounter == 0 || questionCounter < currentTest.questions.length) {
+		testHeader.innerHTML = currentTest.questions[questionCounter].question;
+		for (let i = 0; i < currentTest.questions[questionCounter].options.length; i++)
+			addListOptionIntoQuestion(currentTest.questions[questionCounter].options[i]);
 	}
 
 	questionCounter++;
@@ -111,8 +142,9 @@ function addListOptionIntoQuestion(option) {
 	radioInput.className = "form-check-input"
 	radioInput.setAttribute("id", `radio-option-${option}`);
 	radioInput.setAttribute("type", "radio");
-	radioInput.setAttribute("class", "form-check-label test-item-radio");
+	radioInput.classList.add("test-item-radio", "mr-3");
 	radioLabel.setAttribute("for", `radio-option-${option}`);
+	radioLabel.className = "form-check-label";
 	div.appendChild(radioInput);
 	div.appendChild(radioLabel);
 	radioLabel.appendChild(document.createTextNode(option));
@@ -133,6 +165,28 @@ function setCategoriesToFilterTests() {
 	}
 }
 
+function generateTest(test) {
+	let div = document.createElement("div");
+	let cardBody = document.createElement("div");
+	let span = document.createElement("span");
+	div.classList.add("card", "border-0", "my-2", "test-item", "col-5");
+	div.addEventListener("click", expandTestItemModal);
+	cardBody.setAttribute("data-test-id", test.id);
+	cardBody.classList.add("card-body", "p-3");
+	span.className = "lead";
+	span.innerHTML = test.name;
+	cardBody.appendChild(span);
+	div.appendChild(cardBody);
+	testsContainer.appendChild(div);
+}
+
+function loadTests() {
+	for (let i = 0; i < tests.length; i++) {
+		generateTest(tests[i]);
+	}
+}
+
 window.onload = function () {
 	setCategoriesToFilterTests();
+	loadTests();
 }
